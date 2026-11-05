@@ -1,0 +1,256 @@
+/* Bateekh Man's website: one stylesheet for the English pages and the Arabic ones (right to left).
+   The colours are the game's own (Game/Assets/Scripts/Candy.cs): the rind's dark green, leaf green, the flesh's red and its pink,
+   sun yellow, cream and a seed's dark. Nothing is loaded from another site: the font file sits next to this one. */
+
+@font-face {
+  font-family: "Baloo Bhaijaan 2";
+  src: url("fonts/BalooBhaijaan2-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --rind: #1c6130;
+  --rind-dark: #134422;
+  --leaf: #66ba42;
+  --flesh: #f04a54;
+  --flesh-ink: #c22a35;           /* the flesh's red, dark enough for small text on cream */
+  --blush: #ff8f94;
+  --sun: #ffc733;
+  --cream: #f7fae6;
+  --seed: #291a14;
+  --paper: #fffef6;
+  --line: #dde5c4;
+  --text: #291a14;
+  --soft: #5a4a3f;
+  --display: "Baloo Bhaijaan 2", "Segoe UI", system-ui, sans-serif;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --body-ar: "Segoe UI", Tahoma, "Noto Sans Arabic", "Noto Naskh Arabic", "Geeza Pro", "Arabic UI Text", Arial, sans-serif;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font: 400 1.0625rem/1.65 var(--body);
+}
+
+html[lang="ar"] body { font-family: var(--body-ar); font-size: 1.125rem; line-height: 1.85; }
+
+/* ---------------------------------------------------------------- the top: the rind, then a slice's white and red with seeds */
+
+.skip {
+  position: absolute;
+  inset-inline-start: 1rem;
+  top: -4rem;
+  z-index: 2;
+  background: var(--sun);
+  color: var(--seed);
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.skip:focus { top: 1rem; }
+
+.top { background: var(--rind); color: var(--cream); }
+
+.top-in {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: .8rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem 1.2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: var(--cream);
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+.brand img { width: 44px; height: 44px; border-radius: 12px; }
+
+.nav { display: flex; flex-wrap: wrap; gap: .3rem; margin-inline-start: auto; }
+
+.nav a {
+  color: var(--cream);
+  text-decoration: none;
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .95rem;
+  line-height: 1.6;
+}
+.nav a:hover { background: rgba(255, 255, 255, .14); color: #fff; }
+.nav a[aria-current="page"] { background: var(--sun); color: var(--seed); }
+.nav .lang { border: 2px solid rgba(247, 250, 230, .55); }
+
+.slice {
+  position: relative;
+  height: 18px;
+  background: linear-gradient(to bottom, var(--leaf) 0 4px, #fff 4px 7px, var(--flesh) 7px 100%);
+}
+.slice::after {
+  content: "";
+  position: absolute;
+  inset: 9px 0 0;
+  background: radial-gradient(2px 3.5px at 50% 50%, var(--seed) 85%, transparent 100%) 0 0 / 52px 9px repeat-x;
+}
+
+/* ---------------------------------------------------------------- the page */
+
+main {
+  max-width: 47rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 800;
+  color: var(--rind);
+  line-height: 1.25;
+}
+h1 { font-size: clamp(1.9rem, 6vw, 2.6rem); margin: .2rem 0 .5rem; }
+h2 { font-size: 1.45rem; margin: 2.3rem 0 .7rem; }
+h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: .3rem;
+  border-radius: 2px;
+  background: var(--flesh);
+}
+
+p, ul, ol { margin: 0 0 1rem; }
+ul, ol { padding-inline-start: 1.4rem; }
+li { margin: .35rem 0; }
+li::marker { color: var(--flesh); font-weight: 700; }
+html[lang="ar"] ol { list-style-type: arabic-indic; }
+strong { font-weight: 700; color: var(--seed); }
+
+a {
+  color: var(--rind);
+  text-decoration-color: var(--leaf);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+a:hover { color: var(--flesh-ink); text-decoration-color: var(--flesh); }
+a:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; border-radius: 4px; }
+
+.table {
+  overflow-x: auto;
+  margin: 0 0 1.4rem;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+table { width: 100%; border-collapse: collapse; font-size: .97rem; }
+th, td { text-align: start; vertical-align: top; padding: .65rem .85rem; border-bottom: 1px solid var(--line); }
+th { background: var(--rind); color: var(--cream); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { width: 50%; }
+
+/* on a phone each row is a card, each cell under its column's name (publish.py writes the name into data-label) */
+@media (max-width: 36rem) {
+  .table { border: 0; background: none; overflow: visible; border-radius: 0; }
+  .table table, .table tbody, .table tr, .table td { display: block; width: auto; }
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .table tr { margin: 0 0 .8rem; border: 2px solid var(--line); border-radius: 14px; background: var(--paper); overflow: hidden; }
+  .table td { border: 0; padding: .6rem .9rem; }
+  .table td + td { border-top: 1px dashed var(--line); }
+  .table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: .1rem;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: .85rem;
+    color: var(--flesh-ink);
+  }
+  td:first-child { width: auto; }
+}
+
+/* ---------------------------------------------------------------- the home page */
+
+.hero { text-align: center; padding-top: .5rem; }
+.hero img {
+  width: 128px;
+  height: 128px;
+  border-radius: 30px;
+  box-shadow: 0 6px 0 var(--rind-dark), 0 14px 28px rgba(28, 97, 48, .25);
+}
+.hero h1 { font-size: clamp(2.5rem, 10vw, 3.7rem); margin: 1rem 0 0; }
+.tag { font-family: var(--display); font-weight: 800; color: var(--flesh); font-size: 1.35rem; margin: 0 0 1rem; }
+.hero .intro { max-width: 36rem; margin-inline: auto; }
+
+.soon {
+  display: inline-block;
+  margin: .4rem 0 .6rem;
+  padding: .45rem 1.1rem;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--seed);
+  font-weight: 700;
+  box-shadow: 0 3px 0 #d39b12;
+}
+.facts { color: var(--soft); font-size: .97rem; }
+
+.support {
+  background: var(--paper);
+  border: 2px solid var(--line);
+  border-inline-start: 6px solid var(--flesh);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: .9rem;
+  margin: 0 0 1rem;
+}
+.card {
+  display: block;
+  padding: 1rem 1.1rem;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+  color: var(--text);
+  text-decoration: none;
+  overflow-wrap: normal;
+}
+.card b { display: block; font-family: var(--display); font-weight: 800; color: var(--rind); font-size: 1.2rem; margin-bottom: .2rem; }
+.card:hover { border-color: var(--leaf); color: var(--text); }
+.card:hover b { color: var(--rind); }
+
+/* ---------------------------------------------------------------- the foot */
+
+.foot { background: var(--rind); color: var(--cream); }
+.foot-in {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 1.4rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1.5rem;
+  font-size: .95rem;
+}
+.foot a { color: var(--sun); text-decoration-color: rgba(255, 199, 51, .5); }
+.foot a:hover { color: #fff; text-decoration-color: #fff; }
