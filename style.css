@@ -254,3 +254,30 @@ td:first-child { width: 50%; }
 }
 .foot a { color: var(--sun); text-decoration-color: rgba(255, 199, 51, .5); }
 .foot a:hover { color: #fff; text-decoration-color: #fff; }
+
+/* ---------------------------------------------------------------- get.html: where the ads send people (one tap to the store) */
+
+.get { text-align: center; }
+.get .shot {
+  display: block;
+  width: 100%;
+  max-width: 40rem;
+  height: auto;
+  margin: 1.2rem auto;
+  border-radius: 18px;
+  box-shadow: 0 6px 0 var(--rind-dark), 0 14px 28px rgba(28, 97, 48, .25);
+}
+.store-btn {
+  display: inline-block;
+  margin: .6rem 0 .8rem;
+  padding: .85rem 2rem;
+  border-radius: 999px;
+  background: var(--rind);
+  color: var(--cream);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  text-decoration: none;
+  box-shadow: 0 5px 0 var(--rind-dark);
+}
+.store-btn:hover, .store-btn:focus-visible { background: var(--leaf); color: var(--seed); }
